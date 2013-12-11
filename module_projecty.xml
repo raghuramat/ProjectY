@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_projecty" default="compile.module.projecty">
+  <dirname property="module.projecty.basedir" file="${ant.file.module_projecty}"/>
+  
+  <property name="module.jdk.home.projecty" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.projecty" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.projecty" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.projecty" value="${compiler.args}"/>
+  
+  <property name="projecty.output.dir" value="${module.projecty.basedir}/target/classes"/>
+  <property name="projecty.testoutput.dir" value="${module.projecty.basedir}/target/test-classes"/>
+  
+  <path id="projecty.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="projecty.module.production.classpath">
+    <path refid="${module.jdk.classpath.projecty}"/>
+    <path refid="library.maven:_com.yammer.dropwizard:dropwizard-core:0.6.2.classpath"/>
+    <path refid="library.maven:_com.sun.jersey:jersey-core:1.17.1.classpath"/>
+    <path refid="library.maven:_com.sun.jersey:jersey-server:1.17.1.classpath"/>
+    <path refid="library.maven:_asm:asm:3.1.classpath"/>
+    <path refid="library.maven:_com.sun.jersey:jersey-servlet:1.17.1.classpath"/>
+    <path refid="library.maven:_com.yammer.metrics:metrics-core:2.2.0.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.7.5.classpath"/>
+    <path refid="library.maven:_com.yammer.metrics:metrics-servlet:2.2.0.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-databind:2.1.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-annotations:2.1.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-core:2.1.4.classpath"/>
+    <path refid="library.maven:_com.yammer.metrics:metrics-jetty:2.2.0.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-server:8.1.10.v20130312.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty.orbit:javax.servlet:3.0.0.v201112011016.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-continuation:8.1.10.v20130312.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-http:8.1.10.v20130312.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-io:8.1.10.v20130312.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-util:8.1.10.v20130312.classpath"/>
+    <path refid="library.maven:_com.yammer.metrics:metrics-logback:2.2.0.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-core:1.0.13.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-classic:1.0.13.classpath"/>
+    <path refid="library.maven:_com.yammer.metrics:metrics-jersey:2.2.0.classpath"/>
+    <path refid="library.maven:_com.yammer.metrics:metrics-annotation:2.2.0.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:2.1.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.1.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.1.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.datatype:jackson-datatype-guava:2.1.2.classpath"/>
+    <path refid="library.maven:_com.google.guava:guava:14.0.1.classpath"/>
+    <path refid="library.maven:_com.google.code.findbugs:jsr305:2.0.1.classpath"/>
+    <path refid="library.maven:_net.sourceforge.argparse4j:argparse4j:0.4.0.classpath"/>
+    <path refid="library.maven:_org.slf4j:jul-to-slf4j:1.7.4.classpath"/>
+    <path refid="library.maven:_org.slf4j:log4j-over-slf4j:1.7.4.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-servlet:8.1.10.v20130312.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-security:8.1.10.v20130312.classpath"/>
+    <path refid="library.maven:_org.hibernate:hibernate-validator:4.3.1.final.classpath"/>
+    <path refid="library.maven:_javax.validation:validation-api:1.0.0.ga.classpath"/>
+    <path refid="library.maven:_org.jboss.logging:jboss-logging:3.1.0.cr2.classpath"/>
+    <path refid="library.maven:_joda-time:joda-time:2.2.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.datatype:jackson-datatype-joda:2.1.2.classpath"/>
+    <path refid="library.maven:_com.yammer.dropwizard:dropwizard-jdbi:0.6.2.classpath"/>
+    <path refid="library.maven:_com.yammer.dropwizard:dropwizard-db:0.6.2.classpath"/>
+    <path refid="library.maven:_org.apache.tomcat:tomcat-dbcp:7.0.37.classpath"/>
+    <path refid="library.maven:_org.jdbi:jdbi:2.41.classpath"/>
+    <path refid="library.maven:_com.yammer.metrics:metrics-jdbi:2.2.0.classpath"/>
+    <path refid="library.maven:_com.h2database:h2:1.3.174.classpath"/>
+    <path refid="library.maven:_mysql:mysql-connector-java:5.1.27.classpath"/>
+  </path>
+  
+  <path id="projecty.runtime.production.module.classpath">
+    <pathelement location="${projecty.output.dir}"/>
+    <path refid="library.maven:_com.yammer.dropwizard:dropwizard-core:0.6.2.classpath"/>
+    <path refid="library.maven:_com.sun.jersey:jersey-core:1.17.1.classpath"/>
+    <path refid="library.maven:_com.sun.jersey:jersey-server:1.17.1.classpath"/>
+    <path refid="library.maven:_asm:asm:3.1.classpath"/>
+    <path refid="library.maven:_com.sun.jersey:jersey-servlet:1.17.1.classpath"/>
+    <path refid="library.maven:_com.yammer.metrics:metrics-core:2.2.0.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.7.5.classpath"/>
+    <path refid="library.maven:_com.yammer.metrics:metrics-servlet:2.2.0.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-databind:2.1.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-annotations:2.1.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-core:2.1.4.classpath"/>
+    <path refid="library.maven:_com.yammer.metrics:metrics-jetty:2.2.0.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-server:8.1.10.v20130312.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty.orbit:javax.servlet:3.0.0.v201112011016.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-continuation:8.1.10.v20130312.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-http:8.1.10.v20130312.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-io:8.1.10.v20130312.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-util:8.1.10.v20130312.classpath"/>
+    <path refid="library.maven:_com.yammer.metrics:metrics-logback:2.2.0.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-core:1.0.13.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-classic:1.0.13.classpath"/>
+    <path refid="library.maven:_com.yammer.metrics:metrics-jersey:2.2.0.classpath"/>
+    <path refid="library.maven:_com.yammer.metrics:metrics-annotation:2.2.0.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:2.1.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.1.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.1.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.datatype:jackson-datatype-guava:2.1.2.classpath"/>
+    <path refid="library.maven:_com.google.guava:guava:14.0.1.classpath"/>
+    <path refid="library.maven:_com.google.code.findbugs:jsr305:2.0.1.classpath"/>
+    <path refid="library.maven:_net.sourceforge.argparse4j:argparse4j:0.4.0.classpath"/>
+    <path refid="library.maven:_org.slf4j:jul-to-slf4j:1.7.4.classpath"/>
+    <path refid="library.maven:_org.slf4j:log4j-over-slf4j:1.7.4.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-servlet:8.1.10.v20130312.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-security:8.1.10.v20130312.classpath"/>
+    <path refid="library.maven:_org.hibernate:hibernate-validator:4.3.1.final.classpath"/>
+    <path refid="library.maven:_javax.validation:validation-api:1.0.0.ga.classpath"/>
+    <path refid="library.maven:_org.jboss.logging:jboss-logging:3.1.0.cr2.classpath"/>
+    <path refid="library.maven:_joda-time:joda-time:2.2.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.datatype:jackson-datatype-joda:2.1.2.classpath"/>
+    <path refid="library.maven:_com.yammer.dropwizard:dropwizard-jdbi:0.6.2.classpath"/>
+    <path refid="library.maven:_com.yammer.dropwizard:dropwizard-db:0.6.2.classpath"/>
+    <path refid="library.maven:_org.apache.tomcat:tomcat-dbcp:7.0.37.classpath"/>
+    <path refid="library.maven:_org.jdbi:jdbi:2.41.classpath"/>
+    <path refid="library.maven:_com.yammer.metrics:metrics-jdbi:2.2.0.classpath"/>
+    <path refid="library.maven:_com.h2database:h2:1.3.174.classpath"/>
+    <path refid="library.maven:_mysql:mysql-connector-java:5.1.27.classpath"/>
+  </path>
+  
+  <path id="projecty.module.classpath">
+    <path refid="${module.jdk.classpath.projecty}"/>
+    <pathelement location="${projecty.output.dir}"/>
+    <path refid="library.maven:_com.yammer.dropwizard:dropwizard-core:0.6.2.classpath"/>
+    <path refid="library.maven:_com.sun.jersey:jersey-core:1.17.1.classpath"/>
+    <path refid="library.maven:_com.sun.jersey:jersey-server:1.17.1.classpath"/>
+    <path refid="library.maven:_asm:asm:3.1.classpath"/>
+    <path refid="library.maven:_com.sun.jersey:jersey-servlet:1.17.1.classpath"/>
+    <path refid="library.maven:_com.yammer.metrics:metrics-core:2.2.0.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.7.5.classpath"/>
+    <path refid="library.maven:_com.yammer.metrics:metrics-servlet:2.2.0.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-databind:2.1.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-annotations:2.1.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-core:2.1.4.classpath"/>
+    <path refid="library.maven:_com.yammer.metrics:metrics-jetty:2.2.0.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-server:8.1.10.v20130312.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty.orbit:javax.servlet:3.0.0.v201112011016.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-continuation:8.1.10.v20130312.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-http:8.1.10.v20130312.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-io:8.1.10.v20130312.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-util:8.1.10.v20130312.classpath"/>
+    <path refid="library.maven:_com.yammer.metrics:metrics-logback:2.2.0.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-core:1.0.13.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-classic:1.0.13.classpath"/>
+    <path refid="library.maven:_com.yammer.metrics:metrics-jersey:2.2.0.classpath"/>
+    <path refid="library.maven:_com.yammer.metrics:metrics-annotation:2.2.0.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:2.1.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.1.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.1.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.datatype:jackson-datatype-guava:2.1.2.classpath"/>
+    <path refid="library.maven:_com.google.guava:guava:14.0.1.classpath"/>
+    <path refid="library.maven:_com.google.code.findbugs:jsr305:2.0.1.classpath"/>
+    <path refid="library.maven:_net.sourceforge.argparse4j:argparse4j:0.4.0.classpath"/>
+    <path refid="library.maven:_org.slf4j:jul-to-slf4j:1.7.4.classpath"/>
+    <path refid="library.maven:_org.slf4j:log4j-over-slf4j:1.7.4.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-servlet:8.1.10.v20130312.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-security:8.1.10.v20130312.classpath"/>
+    <path refid="library.maven:_org.hibernate:hibernate-validator:4.3.1.final.classpath"/>
+    <path refid="library.maven:_javax.validation:validation-api:1.0.0.ga.classpath"/>
+    <path refid="library.maven:_org.jboss.logging:jboss-logging:3.1.0.cr2.classpath"/>
+    <path refid="library.maven:_joda-time:joda-time:2.2.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.datatype:jackson-datatype-joda:2.1.2.classpath"/>
+    <path refid="library.maven:_com.yammer.dropwizard:dropwizard-jdbi:0.6.2.classpath"/>
+    <path refid="library.maven:_com.yammer.dropwizard:dropwizard-db:0.6.2.classpath"/>
+    <path refid="library.maven:_org.apache.tomcat:tomcat-dbcp:7.0.37.classpath"/>
+    <path refid="library.maven:_org.jdbi:jdbi:2.41.classpath"/>
+    <path refid="library.maven:_com.yammer.metrics:metrics-jdbi:2.2.0.classpath"/>
+    <path refid="library.maven:_com.h2database:h2:1.3.174.classpath"/>
+    <path refid="library.maven:_mysql:mysql-connector-java:5.1.27.classpath"/>
+  </path>
+  
+  <path id="projecty.runtime.module.classpath">
+    <pathelement location="${projecty.testoutput.dir}"/>
+    <pathelement location="${projecty.output.dir}"/>
+    <path refid="library.maven:_com.yammer.dropwizard:dropwizard-core:0.6.2.classpath"/>
+    <path refid="library.maven:_com.sun.jersey:jersey-core:1.17.1.classpath"/>
+    <path refid="library.maven:_com.sun.jersey:jersey-server:1.17.1.classpath"/>
+    <path refid="library.maven:_asm:asm:3.1.classpath"/>
+    <path refid="library.maven:_com.sun.jersey:jersey-servlet:1.17.1.classpath"/>
+    <path refid="library.maven:_com.yammer.metrics:metrics-core:2.2.0.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.7.5.classpath"/>
+    <path refid="library.maven:_com.yammer.metrics:metrics-servlet:2.2.0.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-databind:2.1.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-annotations:2.1.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-core:2.1.4.classpath"/>
+    <path refid="library.maven:_com.yammer.metrics:metrics-jetty:2.2.0.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-server:8.1.10.v20130312.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty.orbit:javax.servlet:3.0.0.v201112011016.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-continuation:8.1.10.v20130312.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-http:8.1.10.v20130312.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-io:8.1.10.v20130312.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-util:8.1.10.v20130312.classpath"/>
+    <path refid="library.maven:_com.yammer.metrics:metrics-logback:2.2.0.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-core:1.0.13.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-classic:1.0.13.classpath"/>
+    <path refid="library.maven:_com.yammer.metrics:metrics-jersey:2.2.0.classpath"/>
+    <path refid="library.maven:_com.yammer.metrics:metrics-annotation:2.2.0.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:2.1.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.1.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.1.4.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.datatype:jackson-datatype-guava:2.1.2.classpath"/>
+    <path refid="library.maven:_com.google.guava:guava:14.0.1.classpath"/>
+    <path refid="library.maven:_com.google.code.findbugs:jsr305:2.0.1.classpath"/>
+    <path refid="library.maven:_net.sourceforge.argparse4j:argparse4j:0.4.0.classpath"/>
+    <path refid="library.maven:_org.slf4j:jul-to-slf4j:1.7.4.classpath"/>
+    <path refid="library.maven:_org.slf4j:log4j-over-slf4j:1.7.4.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-servlet:8.1.10.v20130312.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-security:8.1.10.v20130312.classpath"/>
+    <path refid="library.maven:_org.hibernate:hibernate-validator:4.3.1.final.classpath"/>
+    <path refid="library.maven:_javax.validation:validation-api:1.0.0.ga.classpath"/>
+    <path refid="library.maven:_org.jboss.logging:jboss-logging:3.1.0.cr2.classpath"/>
+    <path refid="library.maven:_joda-time:joda-time:2.2.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.datatype:jackson-datatype-joda:2.1.2.classpath"/>
+    <path refid="library.maven:_com.yammer.dropwizard:dropwizard-jdbi:0.6.2.classpath"/>
+    <path refid="library.maven:_com.yammer.dropwizard:dropwizard-db:0.6.2.classpath"/>
+    <path refid="library.maven:_org.apache.tomcat:tomcat-dbcp:7.0.37.classpath"/>
+    <path refid="library.maven:_org.jdbi:jdbi:2.41.classpath"/>
+    <path refid="library.maven:_com.yammer.metrics:metrics-jdbi:2.2.0.classpath"/>
+    <path refid="library.maven:_com.h2database:h2:1.3.174.classpath"/>
+    <path refid="library.maven:_mysql:mysql-connector-java:5.1.27.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.projecty">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.projecty">
+    <patternset refid="excluded.from.module.projecty"/>
+  </patternset>
+  
+  <path id="projecty.module.sourcepath">
+    <dirset dir="${module.projecty.basedir}">
+      <include name="src/main/java"/>
+    </dirset>
+  </path>
+  
+  <path id="projecty.module.test.sourcepath">
+    <dirset dir="${module.projecty.basedir}">
+      <include name="src/test/java"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.projecty" depends="compile.module.projecty.production,compile.module.projecty.tests" description="Compile module ProjectY"/>
+  
+  <target name="compile.module.projecty.production" depends="register.custom.compilers" description="Compile module ProjectY; production classes">
+    <mkdir dir="${projecty.output.dir}"/>
+    <javac2 destdir="${projecty.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.projecty}/javac">
+      <compilerarg line="${compiler.args.projecty}"/>
+      <bootclasspath refid="projecty.module.bootclasspath"/>
+      <classpath refid="projecty.module.production.classpath"/>
+      <src refid="projecty.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.projecty"/>
+    </javac2>
+    
+    <copy todir="${projecty.output.dir}">
+      <fileset dir="${module.projecty.basedir}/src/main/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.projecty.tests" depends="register.custom.compilers,compile.module.projecty.production" description="compile module ProjectY; test classes" unless="skip.tests">
+    <mkdir dir="${projecty.testoutput.dir}"/>
+    <javac2 destdir="${projecty.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.projecty}/javac">
+      <compilerarg line="${compiler.args.projecty}"/>
+      <bootclasspath refid="projecty.module.bootclasspath"/>
+      <classpath refid="projecty.module.classpath"/>
+      <src refid="projecty.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.projecty"/>
+    </javac2>
+    
+    <copy todir="${projecty.testoutput.dir}">
+      <fileset dir="${module.projecty.basedir}/src/test/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.projecty" description="cleanup module">
+    <delete dir="${projecty.output.dir}"/>
+    <delete dir="${projecty.testoutput.dir}"/>
+  </target>
+</project>
